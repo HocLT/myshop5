@@ -47,6 +47,7 @@
                                     <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">Product Name</th>
                                     <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Price</th>
                                     <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable" style="width: 50px;">Quantity</th>
+                                    <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Category</th>
                                     <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">Actions</th>
                                 </tr>
                             </thead>
@@ -59,9 +60,10 @@
                                         <img src="{{ asset('images/' . $item->image) }}" style="height: auto; width: 100px;">
                                         @endif
                                     </td>
+                                    <td class="jsgrid-cell" style="width: 100px;">{{ $item->name }}</td>
                                     <td class="jsgrid-cell" style="width: 100px;">{{ $item->price }}</td>
-                                    <td class="jsgrid-cell" style="width: 50px;">Destroy</td>
                                     <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">{{ $item->quantity }}</td>
+                                    <td class="jsgrid-cell" style="width: 50px;">{{ $item->category->name }}</td>
                                     <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
                                         <input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit">
                                         <input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">

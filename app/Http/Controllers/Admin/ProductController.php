@@ -51,6 +51,7 @@ class ProductController extends Controller
             $imageName = null;
         }
         $prodData['image'] = $imageName;
+        $prodData['slug'] = changeTitle($prodData['name']);
         Product::create($prodData);
         return redirect()->route('admin.product.index');
     }
