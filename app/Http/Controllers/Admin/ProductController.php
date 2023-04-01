@@ -15,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
-        return view('admin.product.index');
+        $prods = Product::all();
+        return view('admin.product.index', compact('prods'));
     }
 
     /**
@@ -52,7 +52,7 @@ class ProductController extends Controller
         }
         $prodData['image'] = $imageName;
         Product::create($prodData);
-        return redirect()->route('admin.product');
+        return redirect()->route('admin.product.index');
     }
 
     /**
