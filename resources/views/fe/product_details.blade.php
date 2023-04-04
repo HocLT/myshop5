@@ -34,3 +34,31 @@
 <!-- related products -->
 
 @endsection
+
+@section('myjs')
+<script>
+  const pid = "{{ $prod->id }}"
+  const url = "{{ Route('addCart') }}"
+
+  $(document).ready(function() {
+    $('#cartEffect1').click(function(e) {
+        
+      e.preventDefault(); // bỏ tác dụng của link
+      let quantity = $('.qty-box .qty-adj').val();
+      //alert('quantity: ' + quantity);
+      // dùng jquery ajax gửi request về server
+      $.ajax({
+          type: 'post',
+          url: url,
+          data: {
+              pid: pid, 
+              quantity: quantity, 
+              _token: '{{ csrf_token() }}',
+          }, success: function(data) {
+              alert('add product to cart successful.');
+          }
+      });
+    });
+    });
+</script>
+@endsection

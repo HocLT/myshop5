@@ -892,5 +892,6 @@
     <script src="{{ asset('/js/script.js') }}"></script>
     <script src="{{ asset('/js/timer2.js') }}"></script>
     <script src="{{ asset('/js/modal.js') }}"></script>
+    @yield('myjs')
   </body>
 </html>

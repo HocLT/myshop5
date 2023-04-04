@@ -20,6 +20,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/product-details/{slug}', [HomeController::class, 'productDetails'])->name('product.details');
 
+Route::post('/add-cart', [HomeController::class, 'addCart'])->name('addCart');
+
+Route::get('/view-cart', [HomeController::class, 'viewCart'])->name('viewCart');
 
 
 Route::get('/dashboard', function () {

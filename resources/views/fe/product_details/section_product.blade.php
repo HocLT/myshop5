@@ -61,7 +61,7 @@
                                   <h5 class="modal-title" id="exampleModalLabel">Sheer Straight Kurta</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body"><img src="../assets/images/size-chart.jpg" alt="" class="img-fluid "></div>
+                                <div class="modal-body"><img src="{{ asset('/images/size-chart.jpg') }}" alt="" class="img-fluid "></div>
                               </div>
                             </div>
                           </div>
@@ -110,7 +110,7 @@
                             </div>
                           </div>
                           <div class="product-buttons">
-                            <a href="javascript:void(0)"  id="cartEffect" class="btn cart-btn btn-normal tooltip-top" data-tippy-content="Add to cart">
+                            <a href="javascript:void(0)" id="cartEffect1" class="btn cart-btn btn-normal tooltip-top" data-tippy-content="Add to cart">
                               <i class="fa fa-shopping-cart"></i>
                               add to cart
                             </a>
