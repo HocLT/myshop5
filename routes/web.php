@@ -24,6 +24,8 @@ Route::post('/add-cart', [HomeController::class, 'addCart'])->name('addCart');
 
 Route::get('/view-cart', [HomeController::class, 'viewCart'])->name('viewCart');
 
+Route::post('/update-cart', [HomeController::class, 'updateCart'])->name('updateCart');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

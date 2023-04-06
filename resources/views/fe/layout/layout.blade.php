@@ -520,7 +520,7 @@
         </li>
         <li>
           <div class="buttons">
-            <a href="cart.html" class="btn btn-solid btn-sm">view cart</a>
+            <a href="{{ Route('viewCart') }}" class="btn btn-solid btn-sm">view cart</a>
             <a href="checkout.html" class="btn btn-solid btn-sm ">checkout</a>
           </div>
         </li>

@@ -42,9 +42,18 @@ class HomeController extends Controller
 
     public function viewCart(Request $request) 
     {
+        $cart = [];
         if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart');
-            dd($cart);  
+             
         }
+        return view('fe.cart', compact('cart'));
+    }
+
+    public function updateCart(Request $request) {
+        $id = $request->id;
+        $quantity = $request->quantity;
+        dd($request);
+        // update session
     }
 }
