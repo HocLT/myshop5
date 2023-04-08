@@ -67,10 +67,11 @@
                           <td>
                               <h2>$ {{ $item->product->price }}</h2></td>
                           <td>
-                              <input type="hidden" name="id" value="{{ $item->product->id }}" />
+                              <input type="hidden" name="id[]" value="{{ $item->product->id }}" />
+                              <input class="qty-hidden-{{ $item->product->id }}" type="hidden" name="qty[]" value="{{ $item->quantity }}" />
                               <div class="qty-box">
                                   <div class="input-group">
-                                      <input type="number" name="quantity" data-pid="{{ $item->product->id }}" class="form-control input-number" value="{{ $item->quantity }}">
+                                      <input type="number" name="quantity" data-id="{{ $item->product->id }}" class="form-control input-number" value="{{ $item->quantity }}">
                                   </div>
                               </div>
                           </td>
@@ -111,6 +112,11 @@
 @endsection
 @section('myjs')
 <script>
+    $('.qty-box .input-number').keyup(function(e) {
+        let qty = $(this).val();
+        let pid = $(this).data('id');
+        $('.qty-hidden-'+pid).val(qty);
+    })
   // $('.btn-update-cart').click(function(e) {
   //   e.preventDefault();
 

@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\CartItem;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -45,15 +49,63 @@ class HomeController extends Controller
         $cart = [];
         if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart');
-             
         }
         return view('fe.cart', compact('cart'));
     }
 
     public function updateCart(Request $request) {
         $id = $request->id;
-        $quantity = $request->quantity;
-        dd($request);
-        // update session
+        $quantity = $request->qty;
+        //dd($quantity);
+        if ($request->session()->has('cart')) {
+            $cart = $request->session()->get('cart');
+            for ($i = 0; $i < count($id); $i++) {
+                $pid = $id[$i];
+                $qty = $quantity[$i];
+                // tìm phần tử trong cart - giỏ hàng
+                foreach ($cart as $item) {
+                    if ($item->product->id == $pid) {
+                        $item->quantity = $qty;
+                        break;
+                    }
+                }
+            }
+            $request->session()->put('cart', $cart);
+        }
+        return view('fe.cart', compact('cart'));
+    }
+
+    public function checkout(Request $request) {
+        return view('fe.checkout');
+    }
+
+    public function saveCart(Request $request) {
+        $user = Auth::user();
+        $shipping = $request->shipping;
+        if ($request->session()->has('cart')) {
+            $cart = $request->session()->get('cart');
+           
+            $ord = new Order();
+            $ord->user_id = $user->id;
+            $ord->order_date = date('Y-m-d', time());
+            $ord->shipping_address = $shipping;
+            $ord->save();   // lưu giỏ hàng
+
+            // lưu order detail
+            foreach ($cart as $item) {
+                $od = new OrderDetail();
+                $od->order_id = $ord->id; 
+                $od->product_id = $item->product->id;
+                $od->price = $item->product->price;
+                $od->quantity = $item->quantity;
+                $od->save();
+            }
+
+            // xóa session
+            $request->session()->forget('cart');
+        }
+
+        return redirect('/');
+
     }
 }
